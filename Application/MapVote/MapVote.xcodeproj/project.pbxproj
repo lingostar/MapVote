@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C18F08425E2C146004BAEC3 /* VoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C18F08325E2C146004BAEC3 /* VoteModel.swift */; };
 		2C1CED2125E2AFA700442EAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CED2025E2AFA700442EAD /* AppDelegate.swift */; };
 		2C1CED2325E2AFA700442EAD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CED2225E2AFA700442EAD /* SceneDelegate.swift */; };
 		2C1CED2525E2AFA700442EAD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1CED2425E2AFA700442EAD /* MapViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C18F08325E2C146004BAEC3 /* VoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoteModel.swift; sourceTree = "<group>"; };
 		2C1CED1D25E2AFA700442EAD /* MapVote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapVote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1CED2025E2AFA700442EAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C1CED2225E2AFA700442EAD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				2C1CED2025E2AFA700442EAD /* AppDelegate.swift */,
 				2C1CED2225E2AFA700442EAD /* SceneDelegate.swift */,
 				2C1CED2425E2AFA700442EAD /* MapViewController.swift */,
+				2C18F08325E2C146004BAEC3 /* VoteModel.swift */,
 				2C1CED2625E2AFA700442EAD /* Main.storyboard */,
 				2C1CED2925E2AFA800442EAD /* Assets.xcassets */,
 				2C1CED2B25E2AFA800442EAD /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C1CED2525E2AFA700442EAD /* MapViewController.swift in Sources */,
+				2C18F08425E2C146004BAEC3 /* VoteModel.swift in Sources */,
 				2C1CED2125E2AFA700442EAD /* AppDelegate.swift in Sources */,
 				2C1CED2325E2AFA700442EAD /* SceneDelegate.swift in Sources */,
 			);

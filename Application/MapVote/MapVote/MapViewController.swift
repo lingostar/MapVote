@@ -13,6 +13,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mainMapView: MKMapView!
     
     var region : MKCoordinateRegion?
+    private var allAnnotations: [MKAnnotation] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,16 @@ class MapViewController: UIViewController {
         
         // setRegion on mapView
         self.mainMapView.setRegion(region!, animated: true)
+        
+        // Set Annotation on initialLocation
+        self.mainMapView.addAnnotations(dummyAnnotations)
     }
 
+    // MARK: - Annotation
+    
+    private func registerMapAnnotationViews() {
+        mainMapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(Annotation.self))
+    }
+    
 }
 
