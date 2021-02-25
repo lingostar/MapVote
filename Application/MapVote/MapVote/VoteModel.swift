@@ -8,11 +8,29 @@
 import Foundation
 import MapKit
 
-let dummyCategories:[Category] = [Category]()
+var categoryData : [Category] = []
 
 struct Category: Codable {
     let categoryName: String
-    var items: [Item]
+    let itemTemplates: [ItemTemplate]
+    var items: [Item] = []
+    
+    enum CodingKeys : String , CodingKey {
+        case categoryName
+        case itemTemplates
+    }
+}
+
+struct ItemTemplate : Codable {
+    let itemName: String
+    let pinImageUrl: String
+    let weight : Int
+    
+    enum CodingKeys : String , CodingKey {
+        case itemName
+        case pinImageUrl = "pinImage"
+        case weight
+    }
 }
 
 struct Item : Codable {
@@ -49,20 +67,15 @@ class Annotation: NSObject, MKAnnotation {
     }
 }
 
-var categoryData : [Category] = []
+
 
 func getJson(completion: @escaping ([Category]) -> Void){
-    if let url = URL(string: "https://www.dropbox.com/s/bqhy21g0qvrhtom/Category.json?dl=1") {
+    if let url = URL(string: "https://www.dropbox.com/s/4v5hyavz1cxj3g5/Category.json?dl=1") {
        URLSession.shared.dataTask(with: url) { data, response, error in
           if let data = data {
               do {
-                
-                 let categoryItem = try JSONDecoder().decode([Category].self, from: data)
-                
-                categoryData = categoryItem
-
+                let categoryItem = try JSONDecoder().decode([Category].self, from: data)
                 completion(categoryItem)
-
               } catch let error {
                  print(error)
               }
@@ -72,6 +85,7 @@ func getJson(completion: @escaping ([Category]) -> Void){
 }
 
 
+/*
 func createCategoryDummyData() -> [Category]{
     
     let politicsData : [Item] = [
@@ -124,3 +138,4 @@ func createCategoryDummyData() -> [Category]{
 
     return [politicsCategory, hobbyCategory, sellerCategory]
 }
+*/

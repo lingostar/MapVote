@@ -12,15 +12,13 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mainMapView: MKMapView!
     
-    var region : MKCoordinateRegion?
+    var region : MKCoordinateRegion!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getJson { (jsonData) in
-            
-            self.getAnnotationData(jsonData : jsonData)
-            
+            self.makeRandomItems(categories : jsonData)
         }
         
         setMapView()
@@ -37,24 +35,61 @@ class MapViewController: UIViewController {
         
         region = MKCoordinateRegion(center: initialLocation, span: span)
         
-        // setRegion on mapView
-        self.mainMapView.setRegion(region!, animated: true)
-        
-        // Annotation 추가하기. flatMap으로 3개 카테고리 내의 item들을 하나의 array로 만들고,
-        // item들을 Annotation으로 변환
-        self.mainMapView.addAnnotations(dummyCategories.flatMap{$0.items}.map{$0.makeAnnotation()})
+        updateUI()
     }
     
-    func getAnnotationData(jsonData : [Category]){
-
-        for categoryData in jsonData{
+    func updateUI() {
+        // setRegion on mapView
+        self.mainMapView.setRegion(region, animated: true)
+        // Annotation 추가하기. flatMap으로 3개 카테고리 내의 item들을 하나의 array로 만들고,
+        // item들을 Annotation으로 변환
+        self.mainMapView.addAnnotations(categoryData.flatMap{$0.items}.map{$0.makeAnnotation()})
+    }
+    
+    func makeRandomItems(categories : [Category]){
+        for category in categories{
             print("categoryData : \(categoryData)")
+            var newCategory = category
             
-            for data in categoryData.items{
-                print("data : \(data)")
-                
+            for itemTemplate in category.itemTemplates {
+                print("data : \(itemTemplate)")
+                let items = makeRandomItems(itemTemplate:itemTemplate)
+                newCategory.items.append(contentsOf: items)
+            }
+            categoryData.append(newCategory)
+            
+            DispatchQueue.main.async {
+                self.updateUI()
             }
         }
+    }
+    
+    func makeRandomItems(itemTemplate : ItemTemplate) -> [Item] {
+        
+        let pinPerCategory = 50
+        let itemPinCount = (pinPerCategory * itemTemplate.weight) / 100
+        
+        var items:[Item] = []
+        for _ in 0...itemPinCount {
+            let randomLocation = createRandomLocation(in: region)
+            items.append(Item(itemName: itemTemplate.itemName, pinImageUrl: itemTemplate.pinImageUrl, latitude: randomLocation.0, longitude: randomLocation.1))
+        }
+        return items
+    }
+    
+    func createRandomLocation(in region: MKCoordinateRegion) -> (Double, Double) {
+        //region의 최소, 최대값 구함 (최소 : 중앙에서 span의 1/2만큼 마이너스, 최대 : 중앙에서 span의 1/2만큼 플러스)
+        let minLat = region.center.latitude - (region.span.latitudeDelta/2)
+        let maxLat = region.center.latitude + (region.span.latitudeDelta/2)
+        
+        let minLon = region.center.longitude - (region.span.longitudeDelta/2)
+        let maxLon = region.center.longitude + (region.span.longitudeDelta/2)
+        
+        //0부터 파라미터(span값) 사이의 난수를 리턴
+        let latRand = Double.random(in: minLat...maxLat)
+        let lonRand = Double.random(in: minLon...maxLon)
+        
+        return (latRand, lonRand)
     }
 }
 
