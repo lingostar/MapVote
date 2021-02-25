@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-let dummyCategories:[Category] = createCategoryDummyData()
+let dummyCategories:[Category] = [Category]()
 
 struct Category: Codable {
     let categoryName: String
@@ -19,11 +19,16 @@ struct Item : Codable {
     
     let itemName: String
     let pinImageUrl: String
-    let latitude: Double
-    let longitude : Double
+    var latitude: Double = 0.0
+    var longitude : Double = 0.0
     
     func makeAnnotation() -> Annotation {
         return Annotation(item: self)
+    }
+    
+    enum CodingKeys : String , CodingKey {
+        case itemName
+        case pinImageUrl = "pinImage"
     }
 }
 
@@ -41,6 +46,28 @@ class Annotation: NSObject, MKAnnotation {
     
     init(item:Item) {
         self.item = item
+    }
+}
+
+var categoryData : [Category] = []
+
+func getJson(completion: @escaping ([Category]) -> Void){
+    if let url = URL(string: "https://www.dropbox.com/s/bqhy21g0qvrhtom/Category.json?dl=1") {
+       URLSession.shared.dataTask(with: url) { data, response, error in
+          if let data = data {
+              do {
+                
+                 let categoryItem = try JSONDecoder().decode([Category].self, from: data)
+                
+                categoryData = categoryItem
+
+                completion(categoryItem)
+
+              } catch let error {
+                 print(error)
+              }
+           }
+       }.resume()
     }
 }
 
@@ -97,4 +124,3 @@ func createCategoryDummyData() -> [Category]{
 
     return [politicsCategory, hobbyCategory, sellerCategory]
 }
-

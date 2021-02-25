@@ -88,3 +88,8 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+*.DS_Store
+Application/.DS_Store
+Application/MapVote/MapVote/.DS_Store
+Application/MapVote/MapVote/Assets.xcassets/.DS_Store
+Application/MapVote/MapVote/Assets.xcassets/Annotation/.DS_Store

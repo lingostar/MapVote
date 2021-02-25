@@ -17,6 +17,12 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        getJson { (jsonData) in
+            
+            self.getAnnotationData(jsonData : jsonData)
+            
+        }
+        
         setMapView()
     }
 
@@ -39,6 +45,17 @@ class MapViewController: UIViewController {
         self.mainMapView.addAnnotations(dummyCategories.flatMap{$0.items}.map{$0.makeAnnotation()})
     }
     
+    func getAnnotationData(jsonData : [Category]){
+
+        for categoryData in jsonData{
+            print("categoryData : \(categoryData)")
+            
+            for data in categoryData.items{
+                print("data : \(data)")
+                
+            }
+        }
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -66,6 +83,5 @@ extension MapViewController: MKMapViewDelegate {
 
         return annotationView
     }
-    
 }
 
