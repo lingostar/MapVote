@@ -18,7 +18,8 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getJson { (jsonData) in
-            self.makeRandomItems(categories : jsonData)
+    
+            self.makeRandomData(categories : jsonData)
         }
         
         setMapView()
@@ -41,15 +42,20 @@ class MapViewController: UIViewController {
     func updateUI() {
         // setRegion on mapView
         self.mainMapView.setRegion(region, animated: true)
+        
+        var annotations = mainMapView.annotations
+        self.mainMapView.removeAnnotations(annotations)
+        
         // Annotation 추가하기. flatMap으로 3개 카테고리 내의 item들을 하나의 array로 만들고,
         // item들을 Annotation으로 변환
         self.mainMapView.addAnnotations(categoryData.flatMap{$0.items}.map{$0.makeAnnotation()})
     }
     
-    func makeRandomItems(categories : [Category]){
+    func makeRandomData(categories : [Category]){
+        categoryData = [Category]()
         for category in categories{
-            print("categoryData : \(categoryData)")
-            var newCategory = category
+            print("category : \(category)")
+            var newCategory = Category(categoryName: category.categoryName, itemTemplates: category.itemTemplates, items: [Item]())
             
             for itemTemplate in category.itemTemplates {
                 print("data : \(itemTemplate)")
@@ -91,6 +97,17 @@ class MapViewController: UIViewController {
         
         return (latRand, lonRand)
     }
+    
+    @IBAction func unwindToMap(segue:UIStoryboardSegue){
+        print("unwind")
+        
+    }
+    
+    @IBAction func refreshSelection(_ sender: Any) {
+        region = mainMapView.region
+        
+        self.makeRandomData(categories: categoryData)
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {
@@ -119,4 +136,3 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
 }
-

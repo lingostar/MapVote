@@ -12,7 +12,7 @@ var categoryData : [Category] = []
 
 struct Category: Codable {
     let categoryName: String
-    let itemTemplates: [ItemTemplate]
+    var itemTemplates: [ItemTemplate]
     var items: [Item] = []
     
     enum CodingKeys : String , CodingKey {
@@ -24,7 +24,7 @@ struct Category: Codable {
 struct ItemTemplate : Codable {
     let itemName: String
     let pinImageUrl: String
-    let weight : Int
+    var weight : Int
     
     enum CodingKeys : String , CodingKey {
         case itemName
@@ -67,7 +67,10 @@ class Annotation: NSObject, MKAnnotation {
     }
 }
 
-
+func updateCategoryData(weightText: String, index : IndexPath) {
+    let weight = Int(weightText)
+    categoryData[index.section].itemTemplates[index.row].weight = weight!
+}
 
 func getJson(completion: @escaping ([Category]) -> Void){
     if let url = URL(string: "https://www.dropbox.com/s/4v5hyavz1cxj3g5/Category.json?dl=1") {
