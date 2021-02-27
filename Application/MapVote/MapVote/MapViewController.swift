@@ -11,6 +11,27 @@ import MapKit
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mainMapView: MKMapView!
+    @IBOutlet weak var categorySegmentedControl: CustomSegmentedControl!
+    
+    private var categoryAnnotations = [String:[Annotation]]()
+    private var allAnnotations:[Annotation] {
+        get {
+            return categoryAnnotations.flatMap(){$0.value}
+        }
+    }
+    private var displayedAnnotations: [Annotation]? {
+        willSet {
+            if let currentAnnotations = displayedAnnotations {
+                mainMapView.removeAnnotations(currentAnnotations)
+            }
+        }
+        
+        didSet {
+            if let newAnnotations = displayedAnnotations {
+                mainMapView.addAnnotations(newAnnotations)
+            }
+        }
+    }
     
     var region : MKCoordinateRegion!
     
@@ -37,18 +58,19 @@ class MapViewController: UIViewController {
         region = MKCoordinateRegion(center: initialLocation, span: span)
         
         updateUI()
+        
     }
     
     func updateUI() {
         // setRegion on mapView
         self.mainMapView.setRegion(region, animated: true)
         
-        var annotations = mainMapView.annotations
-        self.mainMapView.removeAnnotations(annotations)
-        
-        // Annotation 추가하기. flatMap으로 3개 카테고리 내의 item들을 하나의 array로 만들고,
-        // item들을 Annotation으로 변환
-        self.mainMapView.addAnnotations(categoryData.flatMap{$0.items}.map{$0.makeAnnotation()})
+        //카테고리 데이터에 있는 카테고리별로 아이템의 애노테이션을 만들어 categoryAnnotations에 담는다
+        for category in categoryData {
+            categoryAnnotations[category.categoryName] = category.items.map{$0.makeAnnotation()}
+        }
+        //현재의 세그먼티드컨트롤을 기반으로 displayedAnnotation을 재설정하여 mapView에 애노테이션 추가
+        categorySegmentedControl.sendActions(for: .valueChanged)
     }
     
     func makeRandomData(categories : [Category]){
@@ -107,6 +129,21 @@ class MapViewController: UIViewController {
         region = mainMapView.region
         
         self.makeRandomData(categories: categoryData)
+    }
+    
+    @IBAction func segmentedControlDidChanged(_ sender:UISegmentedControl) {
+        switch categorySegmentedControl.selectedSegmentIndex {
+        case 0:
+            displayedAnnotations = self.allAnnotations
+        case 1:
+            displayedAnnotations = categoryAnnotations["politics"]
+        case 2:
+            displayedAnnotations = categoryAnnotations["hobby"]
+        case 3:
+            displayedAnnotations = categoryAnnotations["seller"]
+        default:
+            ()
+        }
     }
 }
 
