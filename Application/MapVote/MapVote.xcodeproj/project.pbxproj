@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,8 @@
 		2C1CED2D25E2AFA800442EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1CED2B25E2AFA800442EAD /* LaunchScreen.storyboard */; };
 		2C60663625E9121F00822BA0 /* WeightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60663525E9121F00822BA0 /* WeightTableViewController.swift */; };
 		2C60663925E9140700822BA0 /* WeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60663825E9140700822BA0 /* WeightTableViewCell.swift */; };
+		2CBB9E9425EBA94A003A3300 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 2CBB9E9325EBA94A003A3300 /* Charts */; };
+		2CBB9E9725EBAD3F003A3300 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CBB9E9625EBAD3F003A3300 /* BarChartViewController.swift */; };
 		2CCA555125EAAC260072DF00 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCA555025EAAC260072DF00 /* CustomSegmentedControl.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,6 +33,7 @@
 		2C1CED2E25E2AFA800442EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C60663525E9121F00822BA0 /* WeightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightTableViewController.swift; sourceTree = "<group>"; };
 		2C60663825E9140700822BA0 /* WeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightTableViewCell.swift; sourceTree = "<group>"; };
+		2CBB9E9625EBAD3F003A3300 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		2CCA555025EAAC260072DF00 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CBB9E9425EBA94A003A3300 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +76,7 @@
 				2C60663525E9121F00822BA0 /* WeightTableViewController.swift */,
 				2C60663825E9140700822BA0 /* WeightTableViewCell.swift */,
 				2CCA555025EAAC260072DF00 /* CustomSegmentedControl.swift */,
+				2CBB9E9625EBAD3F003A3300 /* BarChartViewController.swift */,
 				2C1CED2925E2AFA800442EAD /* Assets.xcassets */,
 				2C1CED2B25E2AFA800442EAD /* LaunchScreen.storyboard */,
 				2C1CED2E25E2AFA800442EAD /* Info.plist */,
@@ -95,6 +100,9 @@
 			dependencies = (
 			);
 			name = MapVote;
+			packageProductDependencies = (
+				2CBB9E9325EBA94A003A3300 /* Charts */,
+			);
 			productName = MapVote;
 			productReference = 2C1CED1D25E2AFA700442EAD /* MapVote.app */;
 			productType = "com.apple.product-type.application";
@@ -122,6 +130,9 @@
 				Base,
 			);
 			mainGroup = 2C1CED1425E2AFA700442EAD;
+			packageReferences = (
+				2CBB9E9225EBA94A003A3300 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 2C1CED1E25E2AFA700442EAD /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -154,6 +165,7 @@
 				2C60663625E9121F00822BA0 /* WeightTableViewController.swift in Sources */,
 				2C18F08425E2C146004BAEC3 /* VoteModel.swift in Sources */,
 				2C1CED2125E2AFA700442EAD /* AppDelegate.swift in Sources */,
+				2CBB9E9725EBAD3F003A3300 /* BarChartViewController.swift in Sources */,
 				2C1CED2325E2AFA700442EAD /* SceneDelegate.swift in Sources */,
 				2C60663925E9140700822BA0 /* WeightTableViewCell.swift in Sources */,
 			);
@@ -357,6 +369,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CBB9E9225EBA94A003A3300 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CBB9E9325EBA94A003A3300 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CBB9E9225EBA94A003A3300 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C1CED1525E2AFA700442EAD /* Project object */;
 }
