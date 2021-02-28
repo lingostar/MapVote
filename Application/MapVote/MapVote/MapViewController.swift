@@ -39,7 +39,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         getJson { (jsonData) in
-    
             self.makeRandomData(categories : jsonData)
         }
         
@@ -69,7 +68,13 @@ class MapViewController: UIViewController {
         for category in categoryData {
             categoryAnnotations[category.categoryName] = category.items.map{$0.makeAnnotation()}
         }
+        
+        //세그먼티드컨트롤을 JSON 데이터 기반으로 업데이트
+        categorySegmentedControl.replaceSegments(segmentNames: categoryData.map{$0.categoryName})
+        categorySegmentedControl.insertSegment(withTitle: "All", at: 0, animated: false)
+        
         //현재의 세그먼티드컨트롤을 기반으로 displayedAnnotation을 재설정하여 mapView에 애노테이션 추가
+        self.categorySegmentedControl.selectedSegmentIndex = 0
         categorySegmentedControl.sendActions(for: .valueChanged)
     }
     

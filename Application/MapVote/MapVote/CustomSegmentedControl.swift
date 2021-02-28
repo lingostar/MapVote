@@ -39,3 +39,12 @@ class CustomSegmentedControl: UISegmentedControl {
         }
       }
 }
+
+extension UISegmentedControl {
+    func replaceSegments(segmentNames : [String]) {
+        self.removeAllSegments()
+        for name in segmentNames {
+            self.insertSegment(withTitle: name, at: self.numberOfSegments, animated: false)
+        }
+    }
+}

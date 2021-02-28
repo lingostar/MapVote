@@ -19,6 +19,14 @@ struct Category: Codable {
         case categoryName
         case itemTemplates
     }
+    
+    var weights : [Int] {
+        return itemTemplates.map{$0.weight}
+    }
+    
+    var itemNames : [String] {
+        return itemTemplates.map{$0.itemName}
+    }
 }
 
 struct ItemTemplate : Codable {

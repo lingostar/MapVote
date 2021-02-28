@@ -21,7 +21,19 @@
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </mapView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UKD-rY-6pt" customClass="CustomSegmentedControl">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W1m-ov-r3r">
+                                <rect key="frame" x="258" y="108" width="54" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="Mf3-01-1Rv"/>
+                                    <constraint firstAttribute="width" constant="54" id="b4d-IF-ORX"/>
+                                </constraints>
+                                <state key="normal" image="icGraph"/>
+                                <connections>
+                                    <action selector="refreshSelection:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vyu-cs-mlm"/>
+                                    <segue destination="UYa-tu-BZv" kind="presentation" id="imb-fU-bKn"/>
+                                </connections>
+                            </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" apportionsSegmentWidthsByContent="YES" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="UKD-rY-6pt" customClass="CustomSegmentedControl" customModule="MapVote" customModuleProvider="target">
                                 <rect key="frame" x="8" y="771" width="374" height="32"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -57,6 +69,8 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kHx-FF-m5R" secondAttribute="trailing" constant="20" id="FO6-rE-bHW"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="UKD-rY-6pt" secondAttribute="bottom" constant="8" id="OiW-iy-ZWU"/>
                             <constraint firstItem="kHx-FF-m5R" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="aZF-xK-eem"/>
+                            <constraint firstItem="kHx-FF-m5R" firstAttribute="leading" secondItem="W1m-ov-r3r" secondAttribute="trailing" constant="4" id="lSB-ib-wYu"/>
+                            <constraint firstItem="W1m-ov-r3r" firstAttribute="centerY" secondItem="kHx-FF-m5R" secondAttribute="centerY" id="nCz-pE-gQX"/>
                             <constraint firstItem="UKD-rY-6pt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="wqK-s7-37z"/>
                         </constraints>
                     </view>
@@ -147,6 +161,106 @@
             </objects>
             <point key="canvasLocation" x="1910.7692307692307" y="-354.02843601895734"/>
         </scene>
+        <!--PieChart-->
+        <scene sceneID="1ct-ps-xAE">
+            <objects>
+                <viewController id="0aa-Ho-CMJ" customClass="PieChartViewController" customModule="MapVote" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="I2Y-zL-VOH">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fGK-jZ-B4F" customClass="CustomSegmentedControl" customModule="MapPoll" customModuleProvider="target">
+                                <rect key="frame" x="8" y="20" width="374" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <segments>
+                                    <segment title="politics"/>
+                                    <segment title="hobby"/>
+                                    <segment title="seller"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="SegmentColor"/>
+                                <connections>
+                                    <action selector="didChangeSegment:" destination="0aa-Ho-CMJ" eventType="valueChanged" id="xyj-xw-Uv1"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="fiq-rb-J5Y"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="fGK-jZ-B4F" firstAttribute="leading" secondItem="fiq-rb-J5Y" secondAttribute="leading" constant="8" id="91f-yM-E1K"/>
+                            <constraint firstItem="fGK-jZ-B4F" firstAttribute="top" secondItem="fiq-rb-J5Y" secondAttribute="top" constant="20" id="gSX-6g-8MD"/>
+                            <constraint firstItem="fiq-rb-J5Y" firstAttribute="trailing" secondItem="fGK-jZ-B4F" secondAttribute="trailing" constant="8" id="xwC-IR-Faw"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="PieChart" image="chart.pie" catalog="system" id="iJC-g7-5D4">
+                        <color key="badgeColor" name="SegmentColor"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="categorySementedControl" destination="fGK-jZ-B4F" id="FSR-uX-O0P"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nGb-ef-IfO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2817" y="788"/>
+        </scene>
+        <!--BarChart-->
+        <scene sceneID="LMR-zY-KOt">
+            <objects>
+                <viewController id="cFj-Up-84b" customClass="BarChartViewController" customModule="MapVote" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2MM-1S-1bK">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bordered" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="EBF-Y8-psQ" customClass="CustomSegmentedControl" customModule="MapPoll" customModuleProvider="target">
+                                <rect key="frame" x="8" y="20" width="374" height="32"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <segments>
+                                    <segment title="politics"/>
+                                    <segment title="hobby"/>
+                                    <segment title="seller"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="SegmentColor"/>
+                                <connections>
+                                    <action selector="didChangeSegment:" destination="cFj-Up-84b" eventType="valueChanged" id="c7l-HM-BnX"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="b1R-Gy-wpU"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="EBF-Y8-psQ" firstAttribute="leading" secondItem="b1R-Gy-wpU" secondAttribute="leading" constant="8" id="BAx-yg-5HH"/>
+                            <constraint firstItem="b1R-Gy-wpU" firstAttribute="trailing" secondItem="EBF-Y8-psQ" secondAttribute="trailing" constant="8" id="K98-Db-dC7"/>
+                            <constraint firstItem="EBF-Y8-psQ" firstAttribute="top" secondItem="b1R-Gy-wpU" secondAttribute="top" constant="20" id="LiE-y2-ldj"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="BarChart" image="chart.bar" catalog="system" id="Z4v-Nm-d3t">
+                        <color key="badgeColor" name="SegmentColor"/>
+                    </tabBarItem>
+                    <connections>
+                        <outlet property="categorySementedControl" destination="EBF-Y8-psQ" id="ZG5-ak-6gg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ug6-8T-Cwb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2817" y="114"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="vfC-YR-ugF">
+            <objects>
+                <tabBarController id="UYa-tu-BZv" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="oBI-MH-qE3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="cFj-Up-84b" kind="relationship" relationship="viewControllers" id="FDQ-td-cbv"/>
+                        <segue destination="0aa-Ho-CMJ" kind="relationship" relationship="viewControllers" id="Vv0-85-qdn"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p5s-xe-qU4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="417"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="IUo-Q3-2Js">
             <objects>
@@ -185,10 +299,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chart.bar" catalog="system" width="128" height="90"/>
+        <image name="chart.pie" catalog="system" width="128" height="121"/>
         <image name="gearshape" catalog="system" width="128" height="121"/>
+        <image name="icGraph" width="54" height="54"/>
         <image name="icRefresh" width="54" height="54"/>
         <namedColor name="SegmentColor">
-            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.046999998390674591" green="0.82400000095367432" blue="0.56499999761581421" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
