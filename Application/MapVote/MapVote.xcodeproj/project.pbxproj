@@ -15,6 +15,7 @@
 		2C1CED2A25E2AFA800442EAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C1CED2925E2AFA800442EAD /* Assets.xcassets */; };
 		2C1CED2D25E2AFA800442EAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C1CED2B25E2AFA800442EAD /* LaunchScreen.storyboard */; };
 		2C4D75B725EBC9E800608770 /* PieChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D75B625EBC9E800608770 /* PieChartViewController.swift */; };
+		2C4D75BA25EC80ED00608770 /* ClusterAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4D75B925EC80ED00608770 /* ClusterAnnotationView.swift */; };
 		2C60663625E9121F00822BA0 /* WeightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60663525E9121F00822BA0 /* WeightTableViewController.swift */; };
 		2C60663925E9140700822BA0 /* WeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60663825E9140700822BA0 /* WeightTableViewCell.swift */; };
 		2CBB9E9425EBA94A003A3300 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 2CBB9E9325EBA94A003A3300 /* Charts */; };
@@ -33,6 +34,7 @@
 		2C1CED2C25E2AFA800442EAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2C1CED2E25E2AFA800442EAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C4D75B625EBC9E800608770 /* PieChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartViewController.swift; sourceTree = "<group>"; };
+		2C4D75B925EC80ED00608770 /* ClusterAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClusterAnnotationView.swift; sourceTree = "<group>"; };
 		2C60663525E9121F00822BA0 /* WeightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightTableViewController.swift; sourceTree = "<group>"; };
 		2C60663825E9140700822BA0 /* WeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightTableViewCell.swift; sourceTree = "<group>"; };
 		2CBB9E9625EBAD3F003A3300 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				2CCA555025EAAC260072DF00 /* CustomSegmentedControl.swift */,
 				2CBB9E9625EBAD3F003A3300 /* BarChartViewController.swift */,
 				2C4D75B625EBC9E800608770 /* PieChartViewController.swift */,
+				2C4D75B925EC80ED00608770 /* ClusterAnnotationView.swift */,
 				2C1CED2925E2AFA800442EAD /* Assets.xcassets */,
 				2C1CED2B25E2AFA800442EAD /* LaunchScreen.storyboard */,
 				2C1CED2E25E2AFA800442EAD /* Info.plist */,
@@ -165,6 +168,7 @@
 			files = (
 				2CCA555125EAAC260072DF00 /* CustomSegmentedControl.swift in Sources */,
 				2C1CED2525E2AFA700442EAD /* MapViewController.swift in Sources */,
+				2C4D75BA25EC80ED00608770 /* ClusterAnnotationView.swift in Sources */,
 				2C60663625E9121F00822BA0 /* WeightTableViewController.swift in Sources */,
 				2C18F08425E2C146004BAEC3 /* VoteModel.swift in Sources */,
 				2C1CED2125E2AFA700442EAD /* AppDelegate.swift in Sources */,

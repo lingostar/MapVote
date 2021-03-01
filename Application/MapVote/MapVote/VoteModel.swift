@@ -75,6 +75,17 @@ class Annotation: NSObject, MKAnnotation {
     }
 }
 
+func categoryNameForItem(_ item:Item) -> String? {
+    for category in categoryData {
+        for itemTemplate in category.itemTemplates{
+            if itemTemplate.itemName == item.itemName && itemTemplate.pinImageUrl == item.pinImageUrl {
+                return category.categoryName
+            }
+        }
+    }
+    return nil
+}
+
 func updateCategoryData(weightText: String, index : IndexPath) {
     let weight = Int(weightText)
     categoryData[index.section].itemTemplates[index.row].weight = weight!

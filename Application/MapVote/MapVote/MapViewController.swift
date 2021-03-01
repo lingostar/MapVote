@@ -49,6 +49,7 @@ class MapViewController: UIViewController {
     func setMapView(){
         mainMapView.delegate = self
         mainMapView.register(MKAnnotationView.self, forAnnotationViewWithReuseIdentifier: NSStringFromClass(Annotation.self))
+        mainMapView.register(ClusterAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultClusterAnnotationViewReuseIdentifier)
         
         // Set initial region with initialLocation and span
         let initialLocation = CLLocationCoordinate2D(latitude: 36.505733, longitude: 127.255664)
@@ -170,6 +171,8 @@ extension MapViewController: MKMapViewDelegate {
     
     private func setupAnnotationView(for annotation: Annotation, on mapView: MKMapView) -> MKAnnotationView {
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: NSStringFromClass(Annotation.self), for: annotation)
+        
+        annotationView.clusteringIdentifier = "circleCluster"
         annotationView.canShowCallout = true
         annotationView.calloutOffset = CGPoint(x: -5, y: 5)
         
